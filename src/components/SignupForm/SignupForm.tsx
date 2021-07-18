@@ -8,11 +8,9 @@ import {
   Input,
   Stack,
   Flex,
-  Box,
   InputGroup,
   InputRightElement,
   IconButton,
-  useColorModeValue,
   useDisclosure,
 } from '@chakra-ui/react';
 import { HiEye, HiEyeOff } from 'react-icons/hi';
