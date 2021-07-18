@@ -4,12 +4,13 @@ import SignupPage from './pages/SignupPage';
 import React from 'react';
 import SideMenu from './components/SideMenu/SideMenu';
 import { Container } from '@chakra-ui/react';
+import Quack from './components/Feed/Quack';
 
 const App = () => {
   return (
     <Router>
       <Container maxW={['full', 'md', '7xl']}>
-        <SideMenu />
+        {/* <SideMenu /> */}
         <Route path="/login">
           <LoginPage />
         </Route>
@@ -17,7 +18,7 @@ const App = () => {
           <SignupPage />
         </Route>
         <Route path="/home">
-          <div>feed</div>
+          <Quack />
         </Route>
         <Route path="/messages">
           <div>messages</div>
