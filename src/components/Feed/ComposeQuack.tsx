@@ -8,6 +8,7 @@ import {
   Spacer,
 } from '@chakra-ui/react';
 import { IoImageOutline } from 'react-icons/io5';
+import { AiOutlineGif } from 'react-icons/ai';
 interface Props {}
 
 export const ComposeQuack: React.FC<Props> = () => {
@@ -20,6 +21,12 @@ export const ComposeQuack: React.FC<Props> = () => {
           <IconButton
             variant="ghost"
             icon={<IoImageOutline size="20" />}
+            aria-label="upload image"
+            mr="1"
+          />
+          <IconButton
+            variant="ghost"
+            icon={<AiOutlineGif size="20" />}
             aria-label="upload image"
           />
           <Spacer />
