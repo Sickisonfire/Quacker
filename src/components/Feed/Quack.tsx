@@ -18,7 +18,7 @@ import { Link } from 'react-router-dom';
 const Quack = () => {
   return (
     <>
-      <HStack align="start">
+      <HStack align="start" my="5">
         <Avatar />
         <Box>
           <HStack>
