@@ -5,6 +5,7 @@ import React from 'react';
 import SideMenu from './components/SideMenu/SideMenu';
 import { Container } from '@chakra-ui/react';
 import { Feed } from './components/Feed/Feed';
+import { Searchbar } from './components/Searchbar/Searchbar';
 
 const App = () => {
   return (
@@ -26,6 +27,9 @@ const App = () => {
         </Route>
         <Route path="/settings">
           <div>settings</div>
+        </Route>
+        <Route path="/search">
+          <Searchbar />
         </Route>
         <Route path="/user/:username" exact>
           <div>user</div>
