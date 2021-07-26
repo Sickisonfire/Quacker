@@ -7,6 +7,8 @@ import {
   Flex,
   IconButton,
   Spacer,
+  LinkBox,
+  LinkOverlay,
 } from '@chakra-ui/react';
 import {
   AiOutlineMessage,
@@ -17,11 +19,11 @@ import {
 import { Link } from 'react-router-dom';
 const Quack = () => {
   return (
-    <>
+    <LinkBox>
       <HStack align="start" my="5">
-        <Avatar />
+        <Avatar as={Link} to="username" name="username" src="" />
         <Box>
-          <HStack>
+          <HStack as={Link} to="username">
             <Text fontWeight="bold">Username </Text>
             <Text fontWeight="normal" color="gray.500">
               @duck
@@ -30,12 +32,12 @@ const Quack = () => {
               · 20min
             </Text>
           </HStack>
-          <Text>
+          <LinkOverlay as={Link} to="/username/status/quackid">
             Lorem ipsum dolor sit, amet consectetur adipisicing elit. Odit
             corrupti suscipit doloribus et amet voluptates, natus facilis
             repudiandae ea animi nam perferendis tenetur nesciunt, reprehenderit
             ad. Blanditiis numquam temporibus suscipit!
-          </Text>
+          </LinkOverlay>
           <Flex mt="2" ml="-3">
             <IconButton
               icon={<AiOutlineMessage size="20" />}
@@ -60,7 +62,7 @@ const Quack = () => {
           </Flex>
         </Box>
       </HStack>
-    </>
+    </LinkBox>
   );
 };
 

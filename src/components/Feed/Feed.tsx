@@ -1,16 +1,15 @@
 import React from 'react';
 import Quack from './Quack';
-import { Divider, Heading } from '@chakra-ui/react';
+import { Divider, Box } from '@chakra-ui/react';
 import { ComposeQuack } from './ComposeQuack';
-interface Props {}
+import { FeedHeader } from './FeedHeader';
 
-export const Feed: React.FC<Props> = () => {
+interface IFeedProps {}
+
+export const Feed: React.FC<IFeedProps> = () => {
   return (
-    <div>
-      <Heading fontSize="xl" py="5">
-        Home
-      </Heading>
-      <Divider mb="5" />
+    <Box>
+      <FeedHeader />
       <ComposeQuack />
       <Divider mb="5" />
       <Quack />
@@ -20,6 +19,6 @@ export const Feed: React.FC<Props> = () => {
       <Quack />
       <Divider mb="5" />
       <Quack />
-    </div>
+    </Box>
   );
 };
