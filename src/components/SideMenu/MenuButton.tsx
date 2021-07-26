@@ -1,4 +1,4 @@
-import React, { ReactElement, ReactNode } from 'react';
+import React, { forwardRef, ReactElement, ReactNode, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import {
   Button,
@@ -9,13 +9,16 @@ import {
   MenuItem,
   HTMLChakraProps,
   ThemingProps,
+  useBreakpointValue,
+  IconButton,
 } from '@chakra-ui/react';
 
 interface ButtonBaseProps
   extends HTMLChakraProps<'button'>,
-    ThemingProps<'Button'> {
+    ThemingProps<'ButtonBaseProps'> {
   icon?: ReactElement;
   children?: ReactNode;
+  label: string;
 }
 
 interface MenuButtonProps extends ButtonBaseProps {
@@ -24,52 +27,73 @@ interface MenuButtonProps extends ButtonBaseProps {
 
 interface DropdownButtonProps extends ButtonBaseProps {}
 
-const ButtonBase: React.FC<ButtonBaseProps> = ({ icon, children, ...rest }) => (
-  <Button
-    leftIcon={icon}
-    iconSpacing="5"
-    variant="ghost"
-    fontSize="xl"
-    px="3"
-    {...rest}
-  >
-    {children}
-  </Button>
+const ButtonBase = forwardRef(
+  (
+    { icon, label, children, ...rest }: ButtonBaseProps,
+    ref: React.Ref<HTMLButtonElement>
+  ) => {
+    const isXL = useBreakpointValue({ xl: true });
+
+    return (
+      <>
+        {isXL ? (
+          <Button
+            leftIcon={icon}
+            ref={ref}
+            iconSpacing="5"
+            variant="ghost"
+            fontSize="xl"
+            px="3"
+            {...rest}
+          >
+            {children}
+          </Button>
+        ) : (
+          <IconButton
+            ref={ref}
+            variant="ghost"
+            fontSize="xl"
+            icon={icon}
+            aria-label={label}
+          />
+        )}
+      </>
+    );
+  }
 );
 
 export const MenuButton: React.FC<MenuButtonProps> = ({
   to,
   icon,
   children,
-  ...rest
+  label,
 }) => (
   <Box>
     <Link to={to}>
-      <ButtonBase icon={icon} {...rest}>
+      <ButtonBase icon={icon} label={label}>
         {children}
       </ButtonBase>
     </Link>
   </Box>
 );
 
-export const DropdownButton: React.FC<DropdownButtonProps> = ({ icon }) => (
-  <Box>
-    <Menu>
-      <ChakraMenuButton
-        as={Button}
-        leftIcon={icon}
-        bg="none"
-        px="3"
-        fontSize="xl"
-        iconSpacing="5"
-      >
-        More
-      </ChakraMenuButton>
-      <MenuList>
-        <MenuItem>Settings</MenuItem>
-        <MenuItem>Display</MenuItem>
-        <MenuItem>Logout</MenuItem>
-      </MenuList>
-    </Menu>
-  </Box>
-);
+export const DropdownButton: React.FC<DropdownButtonProps> = ({
+  icon,
+  label,
+  children,
+}) => {
+  return (
+    <Box>
+      <Menu>
+        <ChakraMenuButton as={ButtonBase} icon={icon} label={label}>
+          {children}
+        </ChakraMenuButton>
+        <MenuList>
+          <MenuItem>Settings</MenuItem>
+          <MenuItem>Display</MenuItem>
+          <MenuItem>Logout</MenuItem>
+        </MenuList>
+      </Menu>
+    </Box>
+  );
+};
