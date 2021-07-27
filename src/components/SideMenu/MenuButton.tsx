@@ -1,4 +1,4 @@
-import React, { forwardRef, ReactElement, ReactNode, useRef } from 'react';
+import React, { forwardRef, ReactElement, ReactNode } from 'react';
 import { Link } from 'react-router-dom';
 import {
   Button,
@@ -8,28 +8,25 @@ import {
   MenuButton as ChakraMenuButton,
   MenuItem,
   HTMLChakraProps,
-  ThemingProps,
   useBreakpointValue,
   IconButton,
 } from '@chakra-ui/react';
 
-interface ButtonBaseProps
-  extends HTMLChakraProps<'button'>,
-    ThemingProps<'ButtonBaseProps'> {
+interface IButtonBaseProps extends HTMLChakraProps<'button'> {
   icon?: ReactElement;
   children?: ReactNode;
   label: string;
 }
 
-interface MenuButtonProps extends ButtonBaseProps {
+interface IMenuButtonProps extends IButtonBaseProps {
   to: string;
 }
 
-interface DropdownButtonProps extends ButtonBaseProps {}
+interface IDropdownButtonProps extends IButtonBaseProps {}
 
 const ButtonBase = forwardRef(
   (
-    { icon, label, children, ...rest }: ButtonBaseProps,
+    { icon, label, children, ...rest }: IButtonBaseProps,
     ref: React.Ref<HTMLButtonElement>
   ) => {
     const isXL = useBreakpointValue({ xl: true });
@@ -55,6 +52,7 @@ const ButtonBase = forwardRef(
             fontSize="xl"
             icon={icon}
             aria-label={label}
+            {...rest}
           />
         )}
       </>
@@ -62,7 +60,7 @@ const ButtonBase = forwardRef(
   }
 );
 
-export const MenuButton: React.FC<MenuButtonProps> = ({
+export const MenuButton: React.FC<IMenuButtonProps> = ({
   to,
   icon,
   children,
@@ -77,7 +75,7 @@ export const MenuButton: React.FC<MenuButtonProps> = ({
   </Box>
 );
 
-export const DropdownButton: React.FC<DropdownButtonProps> = ({
+export const DropdownButton: React.FC<IDropdownButtonProps> = ({
   icon,
   label,
   children,
