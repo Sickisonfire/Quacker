@@ -3,9 +3,9 @@ import {
   Avatar,
   Flex,
   Button,
-  Input,
   IconButton,
   Spacer,
+  Textarea,
 } from '@chakra-ui/react';
 import { IoImageOutline } from 'react-icons/io5';
 import { AiOutlineGif } from 'react-icons/ai';
@@ -16,7 +16,14 @@ export const ComposeQuack: React.FC<Props> = () => {
     <Flex align="start">
       <Avatar />
       <Flex direction="column" flexGrow={1}>
-        <Input placeholder="Whats happening?" size="lg" border="none" ml="2" />
+        <Textarea
+          placeholder="Whats happening?"
+          size="lg"
+          border="none"
+          ml="2"
+          resize="vertical"
+          overflow="hidden"
+        />
         <Flex my="2">
           <IconButton
             variant="ghost"

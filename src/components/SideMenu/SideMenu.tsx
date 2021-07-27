@@ -1,21 +1,14 @@
 import React from 'react';
-import {
-  Button,
-  Stack,
-  IconButton,
-  useBreakpointValue,
-  Box,
-} from '@chakra-ui/react';
+import { Stack, IconButton, Box } from '@chakra-ui/react';
 import { Logo } from '../Logo/Logo';
 import { AiFillHome, AiFillMessage } from 'react-icons/ai';
-import { GiDuckPalm } from 'react-icons/gi';
 import { RiUserFill } from 'react-icons/ri';
 import { HiDotsVertical } from 'react-icons/hi';
 import { MenuButton, DropdownButton } from './MenuButton';
 import { Link } from 'react-router-dom';
+import { ComposeQuackModal } from '../ComposeQuackModal/ComposeQuackModal';
 
 const SideMenu = () => {
-  const isXL = useBreakpointValue({ xl: true });
   return (
     <Box>
       <Stack
@@ -51,18 +44,7 @@ const SideMenu = () => {
         <DropdownButton icon={<HiDotsVertical size="28" />} label="Settings">
           More
         </DropdownButton>
-        {isXL ? (
-          <Button px="20" colorScheme="green">
-            Quack
-          </Button>
-        ) : (
-          <IconButton
-            aria-label="Compose Quack"
-            icon={<GiDuckPalm size="28" />}
-            fontSize="xl"
-            colorScheme="green"
-          />
-        )}
+        <ComposeQuackModal />
       </Stack>
     </Box>
   );
