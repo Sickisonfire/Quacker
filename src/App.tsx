@@ -3,10 +3,10 @@ import LoginPage from './pages/LoginPage';
 import SignupPage from './pages/SignupPage';
 import React from 'react';
 import { Box, Container, Flex, Spacer } from '@chakra-ui/react';
-import { Feed } from './components/Feed/Feed';
+import { ContentWrapper } from './components/Content/ContentWrapper';
 import { Searchbar } from './components/Searchbar/Searchbar';
-import { SideContent } from './components/SideContent/SideContent';
 import SideMenu from './components/SideMenu/SideMenu';
+import { Profile } from './components/profile/Profile';
 
 const App = () => {
   return (
@@ -15,7 +15,7 @@ const App = () => {
         <Flex>
           <Spacer />
           <SideMenu />
-          <Box maxW="xl">
+          <Box>
             <Switch>
               <Route path="/login">
                 <LoginPage />
@@ -24,7 +24,7 @@ const App = () => {
                 <SignupPage />
               </Route>
               <Route path="/home" exact>
-                <Feed />
+                <ContentWrapper />
               </Route>
               <Route path="/messages">
                 <div>messages</div>
@@ -36,11 +36,10 @@ const App = () => {
                 <Searchbar />
               </Route>
               <Route path="/:username">
-                <div>user</div>
+                <Profile />
               </Route>
             </Switch>
           </Box>
-          <SideContent />
           <Spacer />
         </Flex>
       </Container>

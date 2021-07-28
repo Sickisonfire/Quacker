@@ -1,10 +1,16 @@
-import { Flex, Text, IconButton, useColorModeValue } from '@chakra-ui/react';
+import {
+  Flex,
+  Text,
+  IconButton,
+  useColorModeValue,
+  ChakraProps,
+} from '@chakra-ui/react';
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { BiArrowBack } from 'react-icons/bi';
 
-interface IFeedHeaderProps {}
-export const FeedHeader: React.FC<IFeedHeaderProps> = () => {
+interface IContentHeaderProps extends ChakraProps {}
+export const ContentHeader: React.FC<IContentHeaderProps> = () => {
   const history = useHistory();
   const bg = useColorModeValue('white', 'gray.800');
   return (
@@ -13,7 +19,7 @@ export const FeedHeader: React.FC<IFeedHeaderProps> = () => {
       fontSize="xl"
       top="0"
       bg={bg}
-      py="6"
+      h="70"
       zIndex="sticky"
       borderBottom="1px solid"
       borderColor="gray.700"
