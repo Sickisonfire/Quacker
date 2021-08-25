@@ -5,23 +5,16 @@ import { ComposeQuack } from '../Feed/ComposeQuack';
 import { ContentHeader } from './ContentHeader';
 import { SideContentWrapper } from '../SideContent/SideContentWrapper';
 import { Searchbar } from '../Searchbar/Searchbar';
+import { Feed } from '../Feed/Feed';
 
 interface IContentWrapper extends ChakraProps {}
 
-export const ContentWrapper: React.FC<IContentWrapper> = () => {
+export const ContentWrapper: React.FC<IContentWrapper> = ({ children }) => {
   return (
     <Flex>
-      <Box maxW="xl">
+      <Box>
         <ContentHeader />
-        <ComposeQuack />
-        <Divider mb="5" />
-        <Quack />
-        <Divider mb="5" />
-        <Quack />
-        <Divider mb="5" />
-        <Quack />
-        <Divider mb="5" />
-        <Quack />
+        {children}
       </Box>
       <SideContentWrapper>
         <Searchbar />

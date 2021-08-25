@@ -5,14 +5,28 @@ import {
   useColorModeValue,
   ChakraProps,
 } from '@chakra-ui/react';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { BiArrowBack } from 'react-icons/bi';
 
 interface IContentHeaderProps extends ChakraProps {}
 export const ContentHeader: React.FC<IContentHeaderProps> = () => {
+  const [headerText, setHeaderText] = useState<string>('');
+
   const history = useHistory();
   const bg = useColorModeValue('white', 'gray.800');
+
+  useEffect(() => {
+    const pathName: string = history.location.pathname;
+    if (pathName === '/home') {
+      setHeaderText('Home');
+    } else if (pathName.includes('/status/')) {
+      setHeaderText('Quack');
+    } else {
+      setHeaderText(pathName.slice(1));
+    }
+  }, [history.location.pathname]);
+
   return (
     <Flex
       pos="sticky"
@@ -21,8 +35,6 @@ export const ContentHeader: React.FC<IContentHeaderProps> = () => {
       bg={bg}
       h="70"
       zIndex="sticky"
-      borderBottom="1px solid"
-      borderColor="gray.700"
       mb="5"
       fontWeight="bold"
       align="center"
@@ -37,7 +49,7 @@ export const ContentHeader: React.FC<IContentHeaderProps> = () => {
           onClick={() => history.goBack()}
         />
       )}
-      <Text> {history.location.pathname === '/home' ? 'Home' : 'Quack'} </Text>
+      <Text> {headerText} </Text>
     </Flex>
   );
 };

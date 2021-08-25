@@ -21,9 +21,9 @@ const Quack = () => {
   return (
     <LinkBox>
       <HStack align="start" my="5">
-        <Avatar as={Link} to="username" name="username" src="" />
+        <Avatar as={Link} to="/username" name="username" src="" />
         <Box>
-          <HStack as={Link} to="username">
+          <HStack as={Link} to="/username">
             <Text fontWeight="bold">Username </Text>
             <Text fontWeight="normal" color="gray.500">
               @duck

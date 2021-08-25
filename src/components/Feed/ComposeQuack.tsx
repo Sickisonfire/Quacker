@@ -9,18 +9,22 @@ import {
 } from '@chakra-ui/react';
 import { IoImageOutline } from 'react-icons/io5';
 import { AiOutlineGif } from 'react-icons/ai';
-interface Props {}
+interface IComposeQuackProps {
+  placeholderText: string;
+}
 
-export const ComposeQuack: React.FC<Props> = () => {
+export const ComposeQuack: React.FC<IComposeQuackProps> = ({
+  placeholderText = 'Quack Something!',
+}) => {
   return (
     <Flex align="start">
       <Avatar />
-      <Flex direction="column" flexGrow={1}>
+      <Flex ml="2" direction="column" flexGrow={1}>
         <Textarea
-          placeholder="Whats happening?"
+          placeholder={placeholderText}
           size="lg"
-          border="none"
-          ml="2"
+          boxSizing="border-box"
+          width="1/2"
           resize="vertical"
           overflow="hidden"
         />
